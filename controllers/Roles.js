@@ -20,6 +20,15 @@ class RoleController {
             throw error;
         }
     }
+
+    async delete(req, res) {
+        try {
+            await Role.deleteOne(req.params.id)
+            res.json({ deleted: true })
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 module.exports = new RoleController;

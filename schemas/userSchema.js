@@ -6,13 +6,14 @@ const requiredString = {
 };
 
 const userSchema = new mongoose.Schema({
+    userId: requiredString,
     first_name: requiredString,
     middle_name: requiredString,
     last_name: requiredString,
     email: requiredString,
     username: requiredString,
     password: requiredString,
-    roles: [{ type: mongoose.Types.ObjectId, required: true }],
+    roles: [requiredString],
     status: String,
     address: String,
     contact_number: Number,
