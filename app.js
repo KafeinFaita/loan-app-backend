@@ -1,8 +1,10 @@
 const express = require('express');
+const app = express();
+
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cors = require('cors');
-const app = express();
+const routes = require('./routes');
 require('dotenv').config()
 
 app.use(cors());
@@ -17,6 +19,7 @@ app.use(session({
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/api', routes)
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URI)
