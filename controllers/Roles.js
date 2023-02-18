@@ -11,6 +11,16 @@ class RoleController {
         }
     }
 
+    async show(req, res) {
+        try {
+            const role = await Role.getOne(req.params.id);
+            console.log(role)
+            res.json(role);
+        } catch (error) {
+            throw error
+        }
+    }
+
     async create(req, res) {
         try {
             console.log(req.body)

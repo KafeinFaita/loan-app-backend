@@ -6,6 +6,15 @@ const Role = mongoose.model('Role', roleSchema);
 
 class RoleModel { // coincidental pun btw
 
+    async getOne(id) {
+        try {
+            const role = Role.findOne({ roleId: id });
+            return role;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async getAll() {
         try {
             const roles = await Role.find();
