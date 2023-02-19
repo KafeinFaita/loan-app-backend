@@ -20,7 +20,7 @@ class RoleModel { // coincidental pun btw
             const roles = await Role.find();
             return roles;
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 
