@@ -7,9 +7,9 @@ const requiredString = {
 
 const userSchema = new mongoose.Schema({
     userId: requiredString,
-    first_name: requiredString,
-    middle_name: requiredString,
-    last_name: requiredString,
+    firstName: requiredString,
+    middleName: requiredString,
+    lastName: requiredString,
     email: requiredString,
     username: requiredString,
     password: requiredString,
