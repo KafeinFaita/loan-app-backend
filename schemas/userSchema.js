@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     email: requiredString,
     username: requiredString,
     password: requiredString,
-    roles: [requiredString],
+    roles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }],
     status: String,
     address: String,
     contact_number: Number,

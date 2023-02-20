@@ -36,7 +36,7 @@ class RoleModel { // coincidental pun btw
 
     async deleteOne(id) {
         try {
-            const role = await Role.findOneAndDelete({ roleId: id });
+            const role = await Role.deleteOne({ roleId: id });
             return role;
         } catch (error) {
             throw error;
