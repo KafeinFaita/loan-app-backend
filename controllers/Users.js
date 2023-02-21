@@ -5,8 +5,13 @@ class UserController {
 
     async index(req, res) {
         const users = await User.getAll();
-        console.log(users[0].roles)
         res.json(users);
+    }
+
+    async show(req, res) {
+        const user = await User.getOne(req.params.id);
+        console.log(user)
+        res.json(user);
     }
 
     async create(req, res) {
@@ -15,6 +20,15 @@ class UserController {
             res.json({msg: "ok"})
         } catch (error) {
             throw error;
+        }
+    }
+
+    async edit(req, res) {
+        try {
+            await User.updateOne(req.params.id, req.body);
+            res.json({ msg: "ok" });
+        } catch (error) {
+            throw error
         }
     }
 

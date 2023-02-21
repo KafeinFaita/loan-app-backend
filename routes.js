@@ -10,7 +10,9 @@ router.get('/roles/:id', Roles.show);
 router.delete('/roles/:id', Roles.delete);
 
 router.get('/users', Users.index);
+router.get('/users/:id', Users.show);
 router.post('/users', Users.create);
+router.put('/users/:id', Users.edit);
 router.delete('/users/:id', Users.delete);
 
 module.exports = router;
