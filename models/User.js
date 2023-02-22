@@ -40,7 +40,6 @@ class UserModel {
 
     async updateOne(id, updates) {
       try {
-        console.log(id)
         const updatedUser = await User.findOneAndUpdate({ userId: id }, updates);
         return updatedUser;
       } catch (error) {
