@@ -10,7 +10,6 @@ class UserController {
 
     async show(req, res) {
         const user = await User.getOne(req.params.id);
-        console.log(user)
         res.json(user);
     }
 

@@ -7,7 +7,10 @@ const cors = require('cors');
 const routes = require('./routes');
 require('dotenv').config()
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://loaning-app-backend-production.up.railway.app'],
+    credentials: true,
+}));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,

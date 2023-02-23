@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const Sessions = require('./controllers/Sessions');
 const Roles = require('./controllers/Roles');
 const Users = require('./controllers/Users');
 const LoanTypes = require('./controllers/LoanTypes');
+
+router.get('/auth', Sessions.authenticate);
+router.post('/', Sessions.login);
 
 router.get('/roles', Roles.index);
 router.post('/roles', Roles.create);

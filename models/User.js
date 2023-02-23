@@ -2,10 +2,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
 const userSchema = require('../schemas/userSchema');
-const roleSchema = require('../schemas/roleSchema')
 
 const User = mongoose.model('User', userSchema);
-const Role = mongoose.model('Role', roleSchema);
 
 class UserModel {
     async getAll() {
@@ -17,10 +15,24 @@ class UserModel {
         }
     }
 
+    async login({ username, password }) {
+      try {
+        const user = await User.findOne({ username }).populate('roles');
+        if (user) {
+          const isAuth = await bcrypt.compare(password, user.password);
+          if (isAuth) {
+            return user;
+          }
+        }
+        return { error: "Invalid username and/or password." };
+      } catch (error) {
+        return { error: "Database error." }
+      }
+    }
+
     async getOne(id) {
       try {
         const user = await User.findOne({ userId: id }).populate('roles').select('-password');
-        console.log(user)
         return user;
       } catch (error) {
           throw error
