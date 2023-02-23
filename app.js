@@ -8,7 +8,7 @@ const routes = require('./routes');
 require('dotenv').config()
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://loaning-app-backend-production.up.railway.app'],
+    origin: ['http://localhost:5173', 'https://andres-loaning-app.onrender.com/'],
     credentials: true,
 }));
 app.use(session({
@@ -20,6 +20,11 @@ app.use(session({
         maxAge: 30 * 24 * 60 * 60 * 1000
      }
 }));
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', 'https://andres-loaning-app.onrender.com');
+//     next();
+// });
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/api', routes)
