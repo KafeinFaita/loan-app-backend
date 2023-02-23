@@ -8,7 +8,7 @@ const routes = require('./routes');
 require('dotenv').config()
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://andres-loaning-app.onrender.com/'],
+    origin: ['http://localhost:5173', 'https://andres-loaning-app.onrender.com'],
     credentials: true,
 }));
 app.use(session({
