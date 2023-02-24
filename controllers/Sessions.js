@@ -18,7 +18,6 @@ class SessionController {
         console.log(req.session)
         try {
             if (req.session.user) {
-                // console.log(req.session.user)
                 return res.json(req.session.user);
             }
             res.status(404).json({ error: "User not logged in." })

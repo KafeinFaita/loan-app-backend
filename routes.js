@@ -6,6 +6,7 @@ const Sessions = require('./controllers/Sessions');
 const Roles = require('./controllers/Roles');
 const Users = require('./controllers/Users');
 const LoanTypes = require('./controllers/LoanTypes');
+const LoanGrids = require('./controllers/LoanGrids');
 
 router.get('/auth', Sessions.authenticate);
 router.post('/', Sessions.login);
@@ -27,5 +28,9 @@ router.get('/loan-types/:id', LoanTypes.show);
 router.post('/loan-types', LoanTypes.create);
 router.put('/loan-types/:id', LoanTypes.edit);
 router.delete('/loan-types/:id', LoanTypes.delete);
+
+router.get('/loan-grid', LoanGrids.index);
+router.post('/loan-grid', LoanGrids.create);
+router.delete('/loan-grid/:id', LoanGrids.delete);
 
 module.exports = router;
