@@ -26,6 +26,11 @@ class SessionController {
             throw error;  
         }
     }
+
+    async logout (req, res) {
+        req.session.user = null;
+        res.json({ success: true });
+    }
 }
 
 module.exports = new SessionController;
