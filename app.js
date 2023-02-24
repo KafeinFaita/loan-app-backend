@@ -17,13 +17,13 @@ app.use(session({
     saveUninitialized: true,
     cookie: { 
         httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+        secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
      }
 }));
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', 'https://andres-loaning-app.onrender.com');
-//     next();
-// });
+
+console.log(process.env.NODE_ENV)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
