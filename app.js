@@ -8,8 +8,7 @@ const routes = require('./routes');
 require('dotenv').config()
 
 app.use(cors({
-    // origin: ['https://andres-loaning-app.onrender.com', 'http://localhost:5173'],
-    origin: '*',
+    origin: ['https://andres-loaning-app.onrender.com', 'http://localhost:5173'],
     credentials: true
 }));
 app.use(cookieSession({
@@ -18,9 +17,7 @@ app.use(cookieSession({
     saveUninitialized: true,
     cookie: { 
         httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "production"
+        maxAge: 30 * 24 * 60 * 60 * 1000
      }
 }));
 
