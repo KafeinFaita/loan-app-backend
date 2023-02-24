@@ -7,7 +7,7 @@ const cors = require('cors');
 const routes = require('./routes');
 require('dotenv').config()
 
-app.set('trust proxy', 1);
+app.enable('trust proxy');
 
 app.use(cors({
     origin: ['https://andres-loaning-app.onrender.com', 'https://easy-red-fox-boot.cyclic.app', 'http://localhost:5173'],
@@ -41,7 +41,5 @@ mongoose.connect(process.env.MONGO_URI)
     }).catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-    console.log(req.headers)
-    console.log(req.headers['x-forwarded-for'])
-    res.json({ msg: 'updated3' })
+    res.json({ msg: 'updated4' })
 })
