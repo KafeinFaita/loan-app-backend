@@ -7,6 +7,8 @@ const cors = require('cors');
 const routes = require('./routes');
 require('dotenv').config()
 
+app.set('trust proxy', 1);
+
 app.use(cors({
     origin: ['https://andres-loaning-app.onrender.com', 'http://localhost:5173'],
     credentials: true
