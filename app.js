@@ -18,11 +18,13 @@ app.use(cookieSession({
     saveUninitialized: true,
     cookie: { 
         httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: process.env.NODE_ENV
      }
 }));
 
-console.log(process.env.NODE_ENV)
+console.log(`This API is in production: ${process.env.NODE_ENV === 'production'}`)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
