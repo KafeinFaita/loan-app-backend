@@ -3,6 +3,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session)
 const cors = require('cors');
 const routes = require('./routes');
 require('dotenv').config()
@@ -20,7 +21,10 @@ app.use(session({
         maxAge: 30 * 24 * 60 * 60 * 1000,
         sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
          // must be true if sameSite='none'
-     }
+     },
+     store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+    }),
 }));
 
 console.log(process.env.NODE_ENV)
