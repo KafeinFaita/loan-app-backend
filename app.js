@@ -19,8 +19,8 @@ app.use(session({
     cookie: { 
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        // sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
-         // must be true if sameSite='none'
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+        secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
      },
      store: new MemoryStore({
         checkPeriod: 86400000 // prune expired entries every 24h
