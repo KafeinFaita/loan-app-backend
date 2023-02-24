@@ -10,7 +10,7 @@ require('dotenv').config()
 app.set('trust proxy', 1);
 
 app.use(cors({
-    origin: ['https://andres-loaning-app.onrender.com', 'http://localhost:5173'],
+    origin: ['https://andres-loaning-app.onrender.com', 'https://easy-red-fox-boot.cyclic.app', 'http://localhost:5173'],
     credentials: true
 }));
 app.use(cookieSession({
