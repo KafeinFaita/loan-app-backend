@@ -27,6 +27,7 @@ app.use(cookieSession({
 }));
 
 console.log(`This API is in production: ${process.env.NODE_ENV === 'production'}`)
+console.log('added trust proxy enable')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -41,5 +42,5 @@ mongoose.connect(process.env.MONGO_URI)
     }).catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-    res.json({ msg: 'updated4' })
+    res.json({ msg: 'updated44' })
 })
