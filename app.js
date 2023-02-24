@@ -12,6 +12,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieSession({
+    name: 'loaning_session',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
