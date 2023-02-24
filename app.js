@@ -19,7 +19,7 @@ app.use(cookieSession({
     cookie: { 
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'lax',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         secure: process.env.NODE_ENV
      }
 }));
@@ -39,5 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
     }).catch(err => console.log(err));
 
 app.get('/', (req, res) => {
+    console.log(req.headers)
+    console.log(req.headers['x-forwarded-for'])
     res.json({ msg: 'updated3' })
 })
