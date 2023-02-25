@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const mongoose = require('mongoose');
-const cookieSession = require('cookie-session');
+const session = require('express-session');
 const cors = require('cors');
 const routes = require('./routes');
 require('dotenv').config()
@@ -13,8 +13,9 @@ app.use(cors({
     origin: ['https://andres-loaning-app.onrender.com', 'https://easy-red-fox-boot.cyclic.app', 'http://localhost:5173'],
     credentials: true
 }));
-app.use(cookieSession({
-    name: 'loaning_session',
+app.use(session({
+    proxy: true,
+    // name: 'loaning_session',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
