@@ -13,15 +13,10 @@ class SessionController {
     }
 
     async authenticate(req, res) {
-        console.log(req.session)
-        try {
-            if (req.session.user) {
-                return res.json(req.session.user);
-            }
-            res.json({ error: "User not logged in." })
-        } catch (error) {
-            throw error;  
+        if (req.session.user) {
+            return res.json(req.session.user);
         }
+        res.status(401).json({ error: "Not logged in." });
     }
 
     async logout (req, res) {
