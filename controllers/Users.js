@@ -4,6 +4,7 @@ const User = new UserModel;
 class UserController {
 
     async index(req, res) {
+        console.log(req.session.user)
         const users = await User.getAll();
         res.json(users);
     }

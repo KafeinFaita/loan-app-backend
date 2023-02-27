@@ -8,7 +8,6 @@ class LoanTypeModel {
     async getOne(id) {
         try {
             const loanType = await LoanType.findOne({ loanTypeId: id });
-            console.log(loanType);
             return loanType;
         } catch (error) {
             throw error;
@@ -18,7 +17,6 @@ class LoanTypeModel {
     async getAll() {
         try {
             const loanTypes = await LoanType.find();
-            console.log(loanTypes);
             return loanTypes;
         } catch (error) {
             throw error;

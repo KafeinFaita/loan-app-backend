@@ -5,6 +5,7 @@ const Middleware = require('./middleware')
 const Sessions = require('./controllers/Sessions');
 const Roles = require('./controllers/Roles');
 const Users = require('./controllers/Users');
+const Loans = require('./controllers/Loans');
 const LoanTypes = require('./controllers/LoanTypes');
 const LoanGrids = require('./controllers/LoanGrids');
 
@@ -22,6 +23,9 @@ router.get('/users/:id', Users.show);
 router.post('/users', Users.create);
 router.put('/users/:id', Users.edit);
 router.delete('/users/:id', Users.delete);
+
+router.get('/loans', Loans.index);
+router.post('/loans', Loans.create);
 
 router.get('/loan-types', LoanTypes.index);
 router.get('/loan-types/:id', LoanTypes.show);
