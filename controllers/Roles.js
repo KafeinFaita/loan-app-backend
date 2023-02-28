@@ -14,7 +14,6 @@ class RoleController {
     async show(req, res) {
         try {
             const role = await Role.getOne(req.params.id);
-            console.log(role)
             res.json(role);
         } catch (error) {
             throw error
