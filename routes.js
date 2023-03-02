@@ -16,6 +16,7 @@ router.delete('/auth', Sessions.logout);
 router.get('/roles', Roles.index);
 router.post('/roles', Roles.create);
 router.get('/roles/:id', Roles.show);
+router.put('/roles/:id', Roles.edit);
 router.delete('/roles/:id', Roles.delete);
 
 router.get('/users', Middleware.requireAuth, Users.index);

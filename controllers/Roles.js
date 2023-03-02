@@ -29,6 +29,15 @@ class RoleController {
         }
     }
 
+    async edit(req, res) {
+        try {
+            await Role.updateOne(req.params.id, req.body);
+            res.json('ok')
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async delete(req, res) {
         try {
             await Role.deleteOne(req.params.id)
