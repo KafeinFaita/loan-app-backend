@@ -10,6 +10,17 @@ class LoanController {
         res.json(loans);
     }
 
+    async show(req, res) {
+        try {
+            const loan = await Loan.getOne(req.params.id);
+            console.log(loan)
+            res.json(loan);
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
     async create(req, res) {
         await Loan.createNew(req.body, req.session.user._id);
         res.json('ok')

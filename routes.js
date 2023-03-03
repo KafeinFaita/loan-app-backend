@@ -26,6 +26,7 @@ router.put('/users/:id', Users.edit);
 router.delete('/users/:id', Users.delete);
 
 router.get('/loans', Loans.index);
+router.get('/loans/:id', Loans.show);
 router.post('/loans', Loans.create);
 
 router.get('/loan-types', LoanTypes.index);

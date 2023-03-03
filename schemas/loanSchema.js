@@ -13,6 +13,7 @@ const loanSchema = new mongoose.Schema({
         type: String,
         default: "Processing"
     },
+    disapproveReason: String,
     loanType: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'LoanType',
