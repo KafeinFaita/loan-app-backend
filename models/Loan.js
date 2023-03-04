@@ -39,6 +39,19 @@ class LoanModel {
             throw error;
         }
     }
+
+    async updateStatus(id, { status, disapproveReason }) {
+        try {
+            const loan = await Loan.findOne({ loanId: id });
+            loan.status = status;
+            if (disapproveReason) {
+                loan.disapproveReason = disapproveReason;
+            }
+            await loan.save();
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = LoanModel;

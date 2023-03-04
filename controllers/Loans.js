@@ -25,6 +25,11 @@ class LoanController {
         await Loan.createNew(req.body, req.session.user._id);
         res.json('ok')
     }
+
+    async editPatch(req, res) {
+        await Loan.updateStatus(req.params.id, req.body);
+        res.json({ msg: 'ok' })
+    }
 }
 
 module.exports = new LoanController;
