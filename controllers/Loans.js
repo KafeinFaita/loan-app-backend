@@ -23,7 +23,12 @@ class LoanController {
 
     async create(req, res) {
         await Loan.createNew(req.body, req.session.user._id);
-        res.json('ok')
+        res.json('ok');
+    }
+
+    async editPut(req, res) {
+        await Loan.updateOne(req.params.id, req.body);
+        res.json('ok');
     }
 
     async editPatch(req, res) {

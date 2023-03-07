@@ -6,6 +6,7 @@ class SessionController {
         try {
             const user = await User.login(req.body);
             req.session.user = user;
+            console.log(user.roles)
             res.json(user);
         } catch (error) {
             throw error;  

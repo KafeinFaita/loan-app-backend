@@ -29,6 +29,7 @@ router.get('/loans', Loans.index);
 router.get('/loans/:id', Loans.show);
 router.post('/loans', Loans.create);
 router.patch('/loans/:id', Loans.editPatch);
+router.put('/loans/:id', Loans.editPut);
 
 router.get('/loan-types', LoanTypes.index);
 router.get('/loan-types/:id', LoanTypes.show);

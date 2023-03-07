@@ -40,6 +40,19 @@ class LoanModel {
         }
     }
 
+    async updateOne(id, { loanAmount, loanType, grid }) {
+        try {
+            const loan = await Loan.findOne({ loanId: id });
+            loan.loanAmount = loanAmount;
+            loan.loanType = loanType;
+            loan.grid = grid;
+
+            await loan.save();
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async updateStatus(id, { status, disapproveReason }) {
         try {
             const loan = await Loan.findOne({ loanId: id });
