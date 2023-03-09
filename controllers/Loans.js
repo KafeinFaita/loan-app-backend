@@ -26,11 +26,13 @@ class LoanController {
         res.json('ok');
     }
 
+    // member loan edit
     async editPut(req, res) {
         await Loan.updateOne(req.params.id, req.body);
         res.json('ok');
     }
 
+    // admin status update
     async editPatch(req, res) {
         await Loan.updateStatus(req.params.id, req.body);
         res.json({ msg: 'ok' })

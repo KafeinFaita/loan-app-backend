@@ -19,7 +19,7 @@ router.get('/roles/:id', Roles.show);
 router.put('/roles/:id', Roles.edit);
 router.delete('/roles/:id', Roles.delete);
 
-router.get('/users', Middleware.requireAuth, Users.index);
+router.get('/users', Middleware.requireAuth, Middleware.authorizeUser('users_allow_view'), Users.index);
 router.get('/users/:id', Users.show);
 router.post('/users', Users.create);
 router.put('/users/:id', Users.edit);
