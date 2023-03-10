@@ -16,7 +16,7 @@ class LoanController {
             console.log(loan)
             res.json(loan);
         } catch (error) {
-            console.log(error)
+            res.status(404).json({ error: 'Loan not found!' });
         }
         
     }

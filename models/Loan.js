@@ -25,6 +25,7 @@ class LoanModel {
             loan.createdAt = dayjs(loan.createdAt).format('MMMM D, YYYY');
             return loan;
         } catch (error) {
+            console.log('Error!')
             throw error;
         }
     }

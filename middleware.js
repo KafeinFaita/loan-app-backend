@@ -1,4 +1,5 @@
 class Middleware {
+    // checks if user is logged in
     requireAuth(req, res, next) {
         if (req.session.user) {
             next();
@@ -7,6 +8,7 @@ class Middleware {
         }
     }
 
+    // checks if user has the correct privilege to access certain routes
     authorizeUser(privilege) {
         return function(req, res, next) {
             const user = req.session.user;
