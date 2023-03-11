@@ -13,11 +13,11 @@ router.get('/auth', Sessions.authenticate);
 router.post('/', Sessions.login);
 router.delete('/auth', Sessions.logout);
 
-router.get('/roles', Roles.index);
-router.post('/roles', Roles.create);
-router.get('/roles/:id', Roles.show);
-router.put('/roles/:id', Roles.edit);
-router.delete('/roles/:id', Roles.delete);
+router.get('/roles', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_view'), Roles.index);
+router.post('/roles', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_add'), Roles.create);
+router.get('/roles/:id', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_view'), Roles.show);
+router.put('/roles/:id', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_edit'), Roles.edit);
+router.delete('/roles/:id', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_delete'), Roles.delete);
 
 router.get('/users', Middleware.requireAuth, Middleware.authorizeUser('users_allow_view'), Users.index);
 router.get('/users/:id', Users.show);
@@ -26,7 +26,7 @@ router.put('/users/:id', Users.edit);
 router.delete('/users/:id', Users.delete);
 
 router.get('/loans', Loans.index);
-router.get('/loans/:id', Loans.show);
+router.get('/loans/:id', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_view'), Loans.show);
 router.post('/loans', Loans.create);
 router.patch('/loans/:id', Loans.editPatch);
 router.put('/loans/:id', Loans.editPut);
