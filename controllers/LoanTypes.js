@@ -5,6 +5,7 @@ class LoanTypeController {
     async index(req, res) {
         try {
             const loanTypes = await LoanType.getAll();
+            
             res.json(loanTypes);
         } catch (error) {
             throw error;

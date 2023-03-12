@@ -4,7 +4,7 @@ class Middleware {
         if (req.session.user) {
             next();
         } else {
-            res.json({ error: "not allowed" });
+            res.json({ error: "not allowed!" });
         }
     }
 

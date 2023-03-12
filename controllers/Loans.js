@@ -6,6 +6,7 @@ const User = new UserModel;
 class LoanController {
     async index(req, res) {
         const loans = await Loan.getAll();
+        console.log('test')
         console.log(loans);
         res.json(loans);
     }
