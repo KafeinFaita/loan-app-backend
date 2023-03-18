@@ -26,12 +26,13 @@ router.put('/users/:id', Middleware.requireAuth, Middleware.authorizeUser('users
 router.delete('/users/:id', Middleware.requireAuth, Middleware.authorizeUser('users_allow_delete'), Users.delete);
 
 router.get('/loans', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_view'), Loans.index);
+router.get('/loans/member', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_view_members'), Loans.indexMember);
 router.get('/loans/:id', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_view'), Loans.show);
 router.post('/loans', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_add'), Loans.create);
 router.patch('/loans/:id', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_update_status'), Loans.editPatch);
 router.put('/loans/:id', Middleware.requireAuth, Middleware.authorizeUser('loans_allow_edit'), Loans.editPut);
 
-router.get('/loan-types', Middleware.requireAuth, Middleware.authorizeUser('loantypes_allow_view'), LoanTypes.index);
+router.get('/loan-types', Middleware.requireAuth, LoanTypes.index);
 router.get('/loan-types/:id', Middleware.requireAuth, Middleware.authorizeUser('loantypes_allow_view'), LoanTypes.show);
 router.post('/loan-types', Middleware.requireAuth, Middleware.authorizeUser('loantypes_allow_add'), LoanTypes.create);
 router.put('/loan-types/:id', Middleware.requireAuth, Middleware.authorizeUser('loantypes_allow_edit'), LoanTypes.edit);

@@ -8,7 +8,8 @@ class LoanGridModel {
 
     async getAll() {
         try {
-            const loanGrids = await LoanGrid.find();
+            const loanGrids = await LoanGrid.find().sort({ maxLoan: 1 });
+            console.log(loanGrids)
             return loanGrids;
         } catch (error) {
             throw error;

@@ -7,12 +7,22 @@ const Loan = mongoose.model('Loan', loanSchema);
 
 class LoanModel {
 
+    async get(id) {
+        try {
+            const loans = await Loan.find({ user: id }).populate('user loanType', '-password -roles').lean();
+            loans.forEach(loan => loan.createdAt = dayjs(loan.createdAt).format('MMMM D, YYYY'));
+        
+            return loans;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async getAll() {
         try {
             // 2nd argument of populate is a field selection string
             const loans = await Loan.find().populate('user loanType', '-password -roles').lean();
             loans.forEach(loan => loan.createdAt = dayjs(loan.createdAt).format('MMMM D, YYYY'));
-            console.log(loans)
             return loans;
         } catch (error) {
             throw error

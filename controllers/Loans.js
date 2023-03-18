@@ -1,10 +1,14 @@
 const LoanModel = require('../models/Loan');
-const UserModel = require('../models/User');
 const Loan = new LoanModel;
-const User = new UserModel;
 
 class LoanController {
     async index(req, res) {
+        console.log("userId: " + req.session.user._id)
+        const loans = await Loan.get(req.session.user._id);
+        res.json(loans);
+    }
+
+    async indexMember(req, res) {
         const loans = await Loan.getAll();
         console.log('test')
         console.log(loans);
@@ -14,6 +18,7 @@ class LoanController {
     async show(req, res) {
         try {
             const loan = await Loan.getOne(req.params.id);
+            console.log(req.session.user)
             console.log(loan)
             res.json(loan);
         } catch (error) {

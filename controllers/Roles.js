@@ -7,7 +7,7 @@ class RoleController {
             const roles = await Role.getAll();
             res.json(roles);
         } catch (error) {
-            throw error;
+            res.status(500).json({ error: "An error has occurred" })
         }
     }
 

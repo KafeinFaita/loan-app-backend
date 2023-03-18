@@ -13,6 +13,8 @@ class Middleware {
         return function(req, res, next) {
             const user = req.session.user;
 
+            console.log(user.roles)
+
             if (user.roles.find(role => role.privileges.includes(privilege))) {
                 console.log('Authorized User')
                 return next();

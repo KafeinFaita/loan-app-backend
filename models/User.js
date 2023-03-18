@@ -41,6 +41,11 @@ class UserModel {
 
     async createNew({ username, password, lastName, firstName, middleName, address, email, roles }) {
         try {
+            const existingUser = await User.find({ username });
+            if (existingUser) {
+              return { error: "Username is already taken" }
+            }
+
             const userId = nanoid(10);
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new User({ userId, username, password: hashedPassword, lastName, firstName, middleName, address, email, roles });
