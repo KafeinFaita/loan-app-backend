@@ -4,7 +4,7 @@ class Middleware {
         if (req.session.user) {
             next();
         } else {
-            res.json({ error: "not allowed!" });
+            res.status(401).json({ error: "You are not logged in." });
         }
     }
 
@@ -13,10 +13,10 @@ class Middleware {
         return function(req, res, next) {
             const user = req.session.user;
 
-            console.log(user.roles)
+            // boolean variable to check if user is requesting to view their own profile page
+            const isViewingOwnProfile = privilege === 'users_allow_view' && req.params.id === req.session.user.userId;
 
-            if (user.roles.find(role => role.privileges.includes(privilege))) {
-                console.log('Authorized User')
+            if (user.roles.find(role => role.privileges.includes(privilege)) || isViewingOwnProfile) {
                 return next();
             }
             console.log('Unauthorized User')
