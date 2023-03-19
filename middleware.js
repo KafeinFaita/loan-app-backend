@@ -14,7 +14,8 @@ class Middleware {
             const user = req.session.user;
 
             // boolean variable to check if user is requesting to view their own profile page
-            const isViewingOwnProfile = privilege === 'users_allow_view' && req.params.id === req.session.user.userId;
+            const userPagePrivileges = ['users_allow_view', 'users_allow_edit']
+            const isViewingOwnProfile = userPagePrivileges.includes(privilege) && req.params.id === req.session.user.userId;
 
             if (user.roles.find(role => role.privileges.includes(privilege)) || isViewingOwnProfile) {
                 return next();
@@ -22,8 +23,14 @@ class Middleware {
             console.log('Unauthorized User')
             res.status(403).json({ error: "Unauthorized user" });
         }
-        
     }
+
+    // allow users to access data related to them
+    // authorizeAccessOwnData(privilege) {
+    //     return function(req, res, next) {
+            
+    //     }
+    // }
 }
 
 module.exports = new Middleware;

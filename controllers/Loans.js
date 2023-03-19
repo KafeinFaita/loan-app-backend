@@ -17,11 +17,19 @@ class LoanController {
 
     async show(req, res) {
         try {
+            const user = req.session.user;
             const loan = await Loan.getOne(req.params.id);
-            console.log(req.session.user)
             console.log(loan)
-            res.json(loan);
+
+            // respond with an error if user doesn't have privilege to view other member's loans
+            if (!user.roles.find(role => role.privileges.includes('loans_allow_view_members')) && loan.user.userId !== req.session.user.userId) {
+                console.log('inside 403')
+                return res.status(403).json({ error: "Unauthorized User" })
+            }
+
+            res.status(200).json(loan);
         } catch (error) {
+            console.log('inside catch')
             res.status(404).json({ error: 'Loan not found!' });
         }
         

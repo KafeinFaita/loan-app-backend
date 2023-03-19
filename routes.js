@@ -13,7 +13,7 @@ router.get('/auth', Sessions.authenticate);
 router.post('/', Sessions.login);
 router.delete('/auth', Sessions.logout);
 
-router.get('/roles', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_view'), Roles.index);
+router.get('/roles', Middleware.requireAuth, Roles.index);
 router.post('/roles', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_add'), Roles.create);
 router.get('/roles/:id', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_view'), Roles.show);
 router.put('/roles/:id', Middleware.requireAuth, Middleware.authorizeUser('roles_allow_edit'), Roles.edit);
@@ -38,8 +38,8 @@ router.post('/loan-types', Middleware.requireAuth, Middleware.authorizeUser('loa
 router.put('/loan-types/:id', Middleware.requireAuth, Middleware.authorizeUser('loantypes_allow_edit'), LoanTypes.edit);
 router.delete('/loan-types/:id', Middleware.requireAuth, Middleware.authorizeUser('loantypes_allow_delete'), LoanTypes.delete);
 
-router.get('/loan-grid', LoanGrids.index);
-router.post('/loan-grid', LoanGrids.create);
-router.delete('/loan-grid/:id', LoanGrids.delete);
+router.get('/loan-grid', Middleware.requireAuth, LoanGrids.index);
+router.post('/loan-grid', Middleware.requireAuth, Middleware.authorizeUser('loangrid_allow_add'), LoanGrids.create);
+router.delete('/loan-grid/:id', Middleware.requireAuth, Middleware.authorizeUser('loangrid_allow_delete'), LoanGrids.delete);
 
 module.exports = router;
