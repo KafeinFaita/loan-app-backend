@@ -18,12 +18,15 @@ class UserController {
         try {
             const user = await User.createNew(req.body);
 
+            console.log(user)
+
             if(user.error && user.error === "Username is already taken") {
                 return res.status(409).json(user)
             }
 
             res.json({msg: "ok"})
         } catch (error) {
+            console.log(error)
             res.status(500).json({ error: "Something went wrong. Please try refreshing the page or contact the administrator if error persists." })
         }
     }
