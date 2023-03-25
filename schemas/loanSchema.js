@@ -28,7 +28,8 @@ const loanSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
         required: true
-    }
+    },
+    coMakers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 }, { timestamps: true })
 
 module.exports = loanSchema;

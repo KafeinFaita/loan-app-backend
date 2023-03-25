@@ -4,7 +4,7 @@ const roleSchema = require('../schemas/roleSchema');
 
 const Role = mongoose.model('Role', roleSchema);
 
-class RoleModel { // coincidental pun btw
+class RoleModel { 
     async getOne(id) {
         try {
             const role = Role.findOne({ roleId: id });

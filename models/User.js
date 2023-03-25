@@ -3,6 +3,13 @@ const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
 const userSchema = require('../schemas/userSchema');
 
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 const User = mongoose.model('User', userSchema);
 
 class UserModel {
@@ -32,7 +39,9 @@ class UserModel {
 
     async getOne(id) {
       try {
-        const user = await User.findOne({ userId: id }).populate('roles').select('-password');
+        const user = await User.findOne({ userId: id }).populate('roles').select('-password').lean();
+        // console.log(dayjs().tz('Asia/Manila').format('MMMM D, YYYY hh:mm a'))
+        user.createdAt = dayjs(user.createdAt).tz('Asia/Manila').format('MMMM D, YYYY hh:mm a')
         return user;
       } catch (error) {
           throw error
